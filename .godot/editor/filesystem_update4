@@ -1,2 +1,4 @@
 res://scenes/level_1.tscn
 res://scenes/player.tscn
+res://code/player.gd
+res://scenes/stick.tscn

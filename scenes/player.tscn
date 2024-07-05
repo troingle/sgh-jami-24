@@ -1,11 +1,32 @@
-[gd_scene load_steps=21 format=3 uid="uid://ct2d72mad7157"]
+[gd_scene load_steps=27 format=3 uid="uid://ct2d72mad7157"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_0pesl"]
 [ext_resource type="Texture2D" uid="uid://hv7epreq48bo" path="res://art/player.png" id="1_6n0n7"]
+[ext_resource type="Texture2D" uid="uid://dq80tuoeeok8n" path="res://art/place_stick.png" id="3_qtb2f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rciv"]
 atlas = ExtResource("1_6n0n7")
 region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7chq"]
+atlas = ExtResource("3_qtb2f")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa5t2"]
+atlas = ExtResource("3_qtb2f")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_puowu"]
+atlas = ExtResource("3_qtb2f")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t2d1"]
+atlas = ExtResource("3_qtb2f")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulg28"]
+atlas = ExtResource("3_qtb2f")
+region = Rect2(0, 32, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xcc32"]
 atlas = ExtResource("1_6n0n7")
@@ -64,6 +85,26 @@ animations = [{
 "loop": true,
 "name": &"idle",
 "speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7chq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa5t2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_puowu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t2d1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ulg28")
+}],
+"loop": false,
+"name": &"place_stick",
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -166,7 +207,8 @@ z_index = 10
 texture_filter = 1
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_cgn72")
-animation = &"run_side"
+animation = &"place_stick"
+autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_wwnqb")
@@ -179,3 +221,8 @@ position_smoothing_enabled = true
 libraries = {
 "": SubResource("AnimationLibrary_m5gqf")
 }
+
+[node name="PlaceTimer" type="Timer" parent="."]
+wait_time = 0.56
+
+[connection signal="timeout" from="PlaceTimer" to="." method="_on_place_timer_timeout"]
