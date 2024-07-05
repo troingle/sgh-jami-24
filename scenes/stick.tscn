@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://7surq7kmvh8y"]
+
+[ext_resource type="Texture2D" uid="uid://chhenjh0tqbnu" path="res://art/stick.png" id="1_ykd8o"]
+
+[node name="Stick" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_ykd8o")
