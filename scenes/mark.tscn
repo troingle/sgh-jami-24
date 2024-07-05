@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=3 uid="uid://b3x0pednriaqg"]
+
+[ext_resource type="Texture2D" uid="uid://cj3klei5gvqo2" path="res://art/mark.png" id="1_78u4p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xgv34"]
+radius = 135.004
+
+[sub_resource type="Animation" id="Animation_kygil"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_4yb5o"]
+resource_name = "mark_wobble"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ku0un"]
+_data = {
+"RESET": SubResource("Animation_kygil"),
+"mark_wobble": SubResource("Animation_4yb5o")
+}
+
+[node name="Mark" type="StaticBody2D" groups=["marks"]]
+collision_layer = 2
+collision_mask = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+texture = ExtResource("1_78u4p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_xgv34")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ku0un")
+}
+autoplay = "mark_wobble"

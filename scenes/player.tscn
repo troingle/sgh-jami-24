@@ -224,5 +224,6 @@ libraries = {
 
 [node name="PlaceTimer" type="Timer" parent="."]
 wait_time = 0.56
+one_shot = true
 
 [connection signal="timeout" from="PlaceTimer" to="." method="_on_place_timer_timeout"]

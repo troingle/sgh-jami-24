@@ -38,18 +38,16 @@ func _physics_process(delta):
 		
 		move_and_slide()
 	
-		
-	
 	if Input.is_action_pressed("exit"):
 		get_tree().quit()
 		
-	if Input.is_action_just_pressed("place"):
+	if Input.is_action_just_pressed("place") and sprite.get_animation() != "place_stick":
 		sprite.flip_h = false
 		anim.play("RESET")
 		sprite.play("place_stick")
 		
 		stick = stickObj.instantiate()
-		$"..".add_child(stick)
+		$"../Line2D".add_child(stick)
 		stick.position = position
 		stick.position.x += 17
 		
@@ -58,4 +56,5 @@ func _physics_process(delta):
 
 func _on_place_timer_timeout():
 	sprite.play("idle")
+	$"../Line2D".update_line()
 	stick.visible = true
