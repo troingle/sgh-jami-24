@@ -31,9 +31,9 @@ func _physics_process(delta):
 			sprite.play("idle")
 			anim.play("RESET")
 		
-		if dir.x > 0:
+		if dir.x > 0 and !dir.y:
 			sprite.flip_h = true
-		elif dir.x < 0:
+		elif dir.x < 0 and !dir.y:
 			sprite.flip_h = false
 		
 		move_and_slide()

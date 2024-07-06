@@ -159,7 +159,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wwnqb"]
-size = Vector2(24, 48)
+size = Vector2(24, 21)
 
 [sub_resource type="Animation" id="Animation_y3vm7"]
 length = 0.001
@@ -211,6 +211,7 @@ animation = &"place_stick"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 13.5)
 shape = SubResource("RectangleShape2D_wwnqb")
 
 [node name="Camera2D" type="Camera2D" parent="."]

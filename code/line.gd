@@ -6,7 +6,6 @@ func _ready():
 	old_children = get_children()
 
 func update_line():
-	print("Yeehaw")
 	if get_children() != old_children:
 		for child in get_children():
 			if child not in old_children:

@@ -1,0 +1,118 @@
+[gd_scene load_steps=13 format=3 uid="uid://cmcpohgq4larm"]
+
+[ext_resource type="Script" path="res://enemy.gd" id="1_mk4m6"]
+[ext_resource type="Texture2D" uid="uid://7udapoxpiufh" path="res://art/enemy_1.png" id="2_qqjcv"]
+[ext_resource type="Texture2D" uid="uid://yetx1u8y783y" path="res://art/circle.png" id="3_r0yme"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvnfe"]
+atlas = ExtResource("2_qqjcv")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v7k5b"]
+atlas = ExtResource("2_qqjcv")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bbysh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vvnfe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v7k5b")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w3lha"]
+size = Vector2(12, 12)
+
+[sub_resource type="Animation" id="Animation_lkbp4"]
+resource_name = "enemy_wobble"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0698132]
+}
+
+[sub_resource type="Animation" id="Animation_7a8bk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j8121"]
+_data = {
+"RESET": SubResource("Animation_7a8bk"),
+"enemy_wobble": SubResource("Animation_lkbp4")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fbuf7"]
+radius = 42.107
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_secsv"]
+size = Vector2(52, 36)
+
+[node name="Enemy" type="CharacterBody2D"]
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_mk4m6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_bbysh")
+animation = &"walk"
+autoplay = "walk"
+frame_progress = 0.690118
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 18)
+shape = SubResource("RectangleShape2D_w3lha")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j8121")
+}
+autoplay = "enemy_wobble"
+
+[node name="View" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="View"]
+visible = false
+position = Vector2(89, 0)
+shape = SubResource("CircleShape2D_fbuf7")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="View"]
+visible = false
+position = Vector2(26, 0)
+shape = SubResource("RectangleShape2D_secsv")
+
+[node name="Sprite2D" type="Sprite2D" parent="View"]
+self_modulate = Color(1, 1, 1, 0.243137)
+texture_filter = 1
+position = Vector2(91, 0)
+scale = Vector2(2.591, 2.591)
+texture = ExtResource("3_r0yme")
