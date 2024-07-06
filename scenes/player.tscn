@@ -1,8 +1,9 @@
-[gd_scene load_steps=27 format=3 uid="uid://ct2d72mad7157"]
+[gd_scene load_steps=33 format=3 uid="uid://ct2d72mad7157"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_0pesl"]
 [ext_resource type="Texture2D" uid="uid://hv7epreq48bo" path="res://art/player.png" id="1_6n0n7"]
 [ext_resource type="Texture2D" uid="uid://dq80tuoeeok8n" path="res://art/place_stick.png" id="3_qtb2f"]
+[ext_resource type="AudioStream" uid="uid://hbhcsxj0yrst" path="res://audio/dundundun.wav" id="4_1qbon"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rciv"]
 atlas = ExtResource("1_6n0n7")
@@ -199,7 +200,64 @@ _data = {
 "wobble": SubResource("Animation_2d2ai")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ox15u"]
+size = Vector2(20, 30)
+
+[sub_resource type="Animation" id="Animation_hos82"]
+resource_name = "fade_out"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_xccru"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qslor"]
+resource_name = "fade_in"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ou4m6"]
+_data = {
+"RESET": SubResource("Animation_xccru"),
+"fade_in": SubResource("Animation_qslor"),
+"fade_out": SubResource("Animation_hos82")
+}
+
 [node name="Player" type="CharacterBody2D"]
+visible = false
 script = ExtResource("1_0pesl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -227,4 +285,31 @@ libraries = {
 wait_time = 0.56
 one_shot = true
 
+[node name="Detector" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
+position = Vector2(0, 3)
+shape = SubResource("RectangleShape2D_ox15u")
+
+[node name="Caught" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_1qbon")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
+self_modulate = Color(1, 1, 1, 0)
+offset_left = -1169.0
+offset_top = -861.0
+offset_right = 1240.0
+offset_bottom = 740.0
+color = Color(0.152941, 0.160784, 0.27451, 1)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/FadeRect"]
+libraries = {
+"": SubResource("AnimationLibrary_ou4m6")
+}
+
 [connection signal="timeout" from="PlaceTimer" to="." method="_on_place_timer_timeout"]
+[connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]

@@ -9,6 +9,8 @@ var dir = 1
 
 @onready var player = $"../Player"
 @onready var view = $View
+@onready var sprite = $AnimatedSprite2D
+@onready var anim = $AnimationPlayer
 
 @export var vertical = false
 @export var length = 400
@@ -37,5 +39,8 @@ func _physics_process(delta):
 		else:
 			view.rotation = deg_to_rad(-180)
 			
-
-	move_and_slide()
+	if not Global.paused:
+		move_and_slide()
+	else:
+		sprite.pause()
+		anim.pause()
