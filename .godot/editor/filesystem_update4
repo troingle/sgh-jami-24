@@ -1,7 +1,7 @@
 res://scenes/level_1.tscn
-res://scenes/player.tscn
 res://code/player.gd
+res://scenes/player.tscn
 res://scenes/stick.tscn
 res://scenes/mark.tscn
 res://scenes/enemy.tscn
-res://code/enemy.gd
+res://scenes/mark.gd

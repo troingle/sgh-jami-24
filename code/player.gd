@@ -15,8 +15,11 @@ var dir
 var stickObj = preload("res://scenes/stick.tscn")
 var stick
 
+var num_of_marks = 0
+
 func _ready():
 	fade_anim.play("fade_in")
+	Global.paused = false
 
 func _physics_process(delta):
 	if not fade_anim.is_playing() and position.y > 750:
@@ -66,6 +69,10 @@ func _physics_process(delta):
 		stick.position.x += 17
 		
 		place_timer.start()
+		
+	if position.distance_to($"../Car".position) < 56:
+		Global.paused = true
+		$CanvasLayer/ScoreWindow.visible = true
 		
 
 func _on_place_timer_timeout():

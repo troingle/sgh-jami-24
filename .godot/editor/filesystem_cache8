@@ -1,7 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1720257443
+::res://::1720276345
 README.md::TextFile::-1::1720171885::0::1::::<><>::
-::res://art/::1720265180
+::res://art/::1720266271
 car.png::CompressedTexture2D::8692713695004330757::1720265176::1720266271::1::::<><>::
 circle.png::CompressedTexture2D::1693985852487321716::1720255187::1720255192::1::::<><>::
 enemy_1.png::CompressedTexture2D::2287513513019442705::1720212341::1720212349::1::::<><>::
@@ -25,9 +25,9 @@ global.gd::GDScript::-1::1720255249::0::1::::<>Node<>::
 line.gd::GDScript::-1::1720194714::0::1::::<>Line2D<>::
 player.gd::GDScript::-1::1720258781::0::1::::<>CharacterBody2D<>::
 stick.gd::GDScript::-1::1720194744::0::1::::<>Node2D<>::
-::res://scenes/::1720262193
+::res://scenes/::1720266272
 enemy.tscn::PackedScene::5620172380255306742::1720262193::0::1::::<><>::res://code/enemy.gd<>uid://7udapoxpiufh::::res://art/enemy_1.png<>uid://yetx1u8y783y::::res://art/circle.png
-level_1.tscn::PackedScene::2612339636578927459::1720262193::0::1::::<><>::uid://ct2d72mad7157::::res://scenes/player.tscn<>uid://bjn5shbox8gdt::::res://art/walls.png<>uid://q0tuidgprjqt::::res://art/fencemap.png<>uid://pjp2tlsngjew::::res://art/props.png<>uid://cjymf1b1rfmx3::::res://art/pathmap.png<>uid://cmh1vaw7rlwmq::::res://art/Silkscreen-Bold.ttf<>uid://b3x0pednriaqg::::res://scenes/mark.tscn<>res://code/line.gd<>uid://cmcpohgq4larm::::res://scenes/enemy.tscn<>uid://h6niiqv3x8hg::::res://art/smiley.png
+level_1.tscn::PackedScene::2612339636578927459::1720266272::0::1::::<><>::uid://ct2d72mad7157::::res://scenes/player.tscn<>uid://bjn5shbox8gdt::::res://art/walls.png<>uid://q0tuidgprjqt::::res://art/fencemap.png<>uid://pjp2tlsngjew::::res://art/props.png<>uid://cjymf1b1rfmx3::::res://art/pathmap.png<>uid://cmh1vaw7rlwmq::::res://art/Silkscreen-Bold.ttf<>uid://b3x0pednriaqg::::res://scenes/mark.tscn<>res://code/line.gd<>uid://cmcpohgq4larm::::res://scenes/enemy.tscn<>uid://h6niiqv3x8hg::::res://art/smiley.png
 mark.tscn::PackedScene::4400733920970624726::1720262193::0::1::::<><>::uid://cj3klei5gvqo2::::res://art/mark.png
 player.tscn::PackedScene::6162408328925092148::1720262193::0::1::::<><>::res://code/player.gd<>uid://hv7epreq48bo::::res://art/player.png<>uid://dq80tuoeeok8n::::res://art/place_stick.png<>uid://hbhcsxj0yrst::::res://audio/dundundun.wav
 stick.tscn::PackedScene::2284447384620393278::1720262193::0::1::::<><>::res://code/stick.gd<>uid://chhenjh0tqbnu::::res://art/stick.png
