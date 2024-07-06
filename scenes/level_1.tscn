@@ -255,7 +255,7 @@ length = 420
 speed = 150
 
 [node name="StartPos" type="Node2D" parent="."]
-position = Vector2(1236, -2643)
+position = Vector2(24, 80)
 
 [node name="Smiley" type="Sprite2D" parent="."]
 texture_filter = 1

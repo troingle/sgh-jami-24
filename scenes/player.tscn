@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://ct2d72mad7157"]
+[gd_scene load_steps=41 format=3 uid="uid://ct2d72mad7157"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_0pesl"]
 [ext_resource type="Texture2D" uid="uid://hv7epreq48bo" path="res://art/player.png" id="1_6n0n7"]
@@ -257,7 +257,22 @@ _data = {
 "fade_out": SubResource("Animation_hos82")
 }
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s5gc0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ib2bb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5i0ly"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hrop"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kn11j"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uqtqn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aa5lw"]
+
 [node name="Player" type="CharacterBody2D"]
+visible = false
 script = ExtResource("1_0pesl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -316,8 +331,8 @@ visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_top = 80.0
-offset_right = 40.0
-offset_bottom = 120.0
+offset_right = 1153.0
+offset_bottom = 650.0
 
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer/ScoreWindow"]
 layout_mode = 0
@@ -329,15 +344,15 @@ color = Color(0.0588235, 0.0627451, 0.12549, 0.941176)
 
 [node name="Label" type="Label" parent="CanvasLayer/ScoreWindow"]
 texture_filter = 1
-offset_left = 294.0
-offset_top = 159.0
-offset_right = 4366.0
-offset_bottom = 933.0
+offset_left = 293.0
+offset_top = 169.0
+offset_right = 4365.0
+offset_bottom = 943.0
 scale = Vector2(0.13876, 0.13876)
 theme_override_colors/font_color = Color(0.905882, 1, 0.933333, 1)
 theme_override_fonts/font = ExtResource("5_6e0kg")
 theme_override_font_sizes/font_size = 185
-text = "liian epätarkkoja merkintöjä, et päässyt läpi"
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
 horizontal_alignment = 1
 autowrap_mode = 3
 
@@ -352,9 +367,14 @@ scale = Vector2(0.13876, 0.13876)
 theme_override_colors/font_color = Color(0.905882, 1, 0.933333, 1)
 theme_override_fonts/font = ExtResource("5_6e0kg")
 theme_override_font_sizes/font_size = 165
+theme_override_styles/normal = SubResource("StyleBoxEmpty_s5gc0")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ib2bb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5i0ly")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8hrop")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_kn11j")
 text = "yritä uudelleen"
 
-[node name="Restart2" type="MenuButton" parent="CanvasLayer/ScoreWindow"]
+[node name="Next" type="MenuButton" parent="CanvasLayer/ScoreWindow"]
 texture_filter = 1
 layout_mode = 0
 offset_left = 294.0
@@ -365,7 +385,14 @@ scale = Vector2(0.13876, 0.13876)
 theme_override_colors/font_color = Color(0.905882, 1, 0.933333, 1)
 theme_override_fonts/font = ExtResource("5_6e0kg")
 theme_override_font_sizes/font_size = 165
+theme_override_styles/normal = SubResource("StyleBoxEmpty_uqtqn")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_ib2bb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_5i0ly")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8hrop")
+theme_override_styles/focus = SubResource("StyleBoxFlat_aa5lw")
 text = "seuraava taso"
 
 [connection signal="timeout" from="PlaceTimer" to="." method="_on_place_timer_timeout"]
 [connection signal="body_entered" from="Detector" to="." method="_on_detector_body_entered"]
+[connection signal="pressed" from="CanvasLayer/ScoreWindow/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="CanvasLayer/ScoreWindow/Next" to="." method="_on_next_pressed"]

@@ -16,6 +16,10 @@ var stickObj = preload("res://scenes/stick.tscn")
 var stick
 
 var num_of_marks = 0
+var marks_already_done = []
+var mark_count = 0
+
+var ended = false
 
 func _ready():
 	fade_anim.play("fade_in")
@@ -72,7 +76,15 @@ func _physics_process(delta):
 		
 	if position.distance_to($"../Car".position) < 56:
 		Global.paused = true
-		$CanvasLayer/ScoreWindow.visible = true
+		if not ended:
+			$CanvasLayer/ScoreWindow.visible = true
+			ended = true
+		if mark_count >= num_of_marks:
+			$CanvasLayer/ScoreWindow/Label.text = "onnittelut,
+pääsit läpi!"
+		else:
+			$CanvasLayer/ScoreWindow/Label.text = "liian epätarkkoja merkintöjä, et päässyt läpi"
+			$CanvasLayer/ScoreWindow/Next.modulate = "ffffff5f"
 		
 
 func _on_place_timer_timeout():
@@ -101,3 +113,10 @@ func fade_and_change(resetting, target_scene):
 	if resetting:
 		Global.paused = false 
 		get_tree().reload_current_scene()
+
+func _on_restart_pressed():
+	$CanvasLayer/ScoreWindow.visible = false
+	fade_and_change(true, null)
+
+func _on_next_pressed():
+	pass # Replace with function body.
