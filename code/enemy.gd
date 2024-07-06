@@ -26,8 +26,14 @@ func _ready():
 func _physics_process(delta):
 	if vertical:
 		velocity.y = speed * dir
-		if position.y >= target.y or position.y <= start.y:
-			dir *= -1
+		if position.y >= target.y:
+			dir = -1
+		elif position.y <= start.y:
+			dir = 1
+		if dir == 1:
+			view.rotation = deg_to_rad(90)
+		else:
+			view.rotation = deg_to_rad(-90)
 	else:
 		velocity.x = speed * dir
 		if position.x >= target.x:

@@ -4,3 +4,4 @@ res://code/player.gd
 res://scenes/stick.tscn
 res://scenes/mark.tscn
 res://scenes/enemy.tscn
+res://code/enemy.gd
