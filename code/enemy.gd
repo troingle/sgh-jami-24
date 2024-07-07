@@ -16,12 +16,16 @@ var dir = 1
 @export var length = 400
 @export var speed = 120
 
+var rng = RandomNumberGenerator.new()
+
 func _ready():
 	start = position
 	if vertical:
 		target = Vector2(position.x, position.y + length)
 	else:
 		target = Vector2(position.x + length, position.y)
+	
+	sprite.play("walk" + str(rng.randi_range(1, 6)))
 
 func _physics_process(delta):
 	if vertical:

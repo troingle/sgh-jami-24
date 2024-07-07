@@ -244,7 +244,7 @@ autowrap_mode = 3
 position = Vector2(24, -1009)
 
 [node name="Mark2" parent="Marks" instance=ExtResource("6_taflm")]
-position = Vector2(162, -1583)
+position = Vector2(162, -1609)
 
 [node name="Mark3" parent="Marks" instance=ExtResource("6_taflm")]
 position = Vector2(360, -2636)

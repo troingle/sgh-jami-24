@@ -62,6 +62,9 @@ func _physics_process(delta):
 	if Input.is_action_pressed("exit"):
 		get_tree().quit()
 		
+	if Input.is_action_pressed("reset"):
+		get_tree().reload_current_scene()
+		
 	if Input.is_action_just_pressed("place") and sprite.get_animation() != "place_stick" and stick_count < num_of_marks and not Global.paused:
 		sprite.flip_h = false
 		anim.play("RESET")
@@ -124,5 +127,21 @@ func _on_restart_pressed():
 	fade_and_change(true, null)
 
 func _on_next_pressed():
-	$CanvasLayer/ScoreWindow.visible = false
-	fade_and_change(false, "level 2 goes here")
+	if mark_count >= num_of_marks:
+		$CanvasLayer/ScoreWindow.visible = false
+		if $"..".name == "Level1":
+			fade_and_change(false, "res://scenes/level_2.tscn")
+		elif $"..".name == "Level2":
+			fade_and_change(false, "res://scenes/level_3.tscn")
+		elif $"..".name == "Level3":
+			fade_and_change(false, "res://scenes/level_4.tscn")
+		elif $"..".name == "Level4":
+			fade_and_change(false, "res://scenes/level_5.tscn")
+		elif $"..".name == "Level5":
+			fade_and_change(false, "res://scenes/level_6.tscn")
+		elif $"..".name == "Level6":
+			fade_and_change(false, "res://scenes/level_7.tscn")
+		elif $"..".name == "Level7":
+			fade_and_change(false, "res://scenes/level_8.tscn")
+		elif $"..".name == "Level8":
+			fade_and_change(false, "res://scenes/level_9.tscn")
