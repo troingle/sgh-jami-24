@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://scenes/mark.gd" id="1_wgx6w"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xgv34"]
-radius = 114.07
+radius = 71.2531
 
 [sub_resource type="Animation" id="Animation_kygil"]
 length = 0.001

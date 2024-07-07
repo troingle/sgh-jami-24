@@ -15,9 +15,10 @@ var dir
 var stickObj = preload("res://scenes/stick.tscn")
 var stick
 
-var num_of_marks = 0
-var marks_already_done = []
-var mark_count = 0
+var num_of_marks = 0 # number of marks in a level
+var marks_already_done = [] # list of what individual marks have been marked
+var mark_count = 0 # number of successful markings
+var stick_count = 0 # number of sticks, successful markings or not
 
 var ended = false
 
@@ -33,7 +34,6 @@ func _physics_process(delta):
 	dir = Input.get_vector("left", "right", "up", "down")
 	velocity.x = move_toward(velocity.x, speed * dir.x, accel)
 	velocity.y = move_toward(velocity.y, speed * dir.y, accel)
-	
 	if sprite.get_animation() != "place_stick" and not Global.paused:
 		if dir.y > 0:
 			sprite.play("run_fwd")
@@ -62,7 +62,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("exit"):
 		get_tree().quit()
 		
-	if Input.is_action_just_pressed("place") and sprite.get_animation() != "place_stick" and not Global.paused:
+	if Input.is_action_just_pressed("place") and sprite.get_animation() != "place_stick" and stick_count < num_of_marks and not Global.paused:
 		sprite.flip_h = false
 		anim.play("RESET")
 		sprite.play("place_stick")
@@ -85,12 +85,14 @@ pääsit läpi!"
 		else:
 			$CanvasLayer/ScoreWindow/Label.text = "liian epätarkkoja merkintöjä, et päässyt läpi"
 			$CanvasLayer/ScoreWindow/Next.modulate = "ffffff5f"
-		
+	
+	$CanvasLayer/LeftLabel.text = str(num_of_marks - stick_count) + " jäljellä"
 
 func _on_place_timer_timeout():
 	sprite.play("idle")
 	$"../Line2D".update_line()
 	stick.visible = true
+	stick_count += 1
 
 func _on_detector_body_entered(body):
 	if body.is_in_group("enemies"):
@@ -113,10 +115,14 @@ func fade_and_change(resetting, target_scene):
 	if resetting:
 		Global.paused = false 
 		get_tree().reload_current_scene()
+	else:
+		Global.paused = false
+		get_tree().change_scene_to_file(target_scene)
 
 func _on_restart_pressed():
 	$CanvasLayer/ScoreWindow.visible = false
 	fade_and_change(true, null)
 
 func _on_next_pressed():
-	pass # Replace with function body.
+	$CanvasLayer/ScoreWindow.visible = false
+	fade_and_change(false, "level 2 goes here")

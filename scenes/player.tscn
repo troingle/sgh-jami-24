@@ -1,10 +1,11 @@
-[gd_scene load_steps=41 format=3 uid="uid://ct2d72mad7157"]
+[gd_scene load_steps=42 format=3 uid="uid://ct2d72mad7157"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_0pesl"]
 [ext_resource type="Texture2D" uid="uid://hv7epreq48bo" path="res://art/player.png" id="1_6n0n7"]
 [ext_resource type="Texture2D" uid="uid://dq80tuoeeok8n" path="res://art/place_stick.png" id="3_qtb2f"]
 [ext_resource type="AudioStream" uid="uid://hbhcsxj0yrst" path="res://audio/dundundun.wav" id="4_1qbon"]
 [ext_resource type="FontFile" uid="uid://cmh1vaw7rlwmq" path="res://art/Silkscreen-Bold.ttf" id="5_6e0kg"]
+[ext_resource type="Texture2D" uid="uid://chhenjh0tqbnu" path="res://art/stick.png" id="6_no7wv"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4rciv"]
 atlas = ExtResource("1_6n0n7")
@@ -313,6 +314,28 @@ stream = ExtResource("4_1qbon")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="LeftLabel" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+offset_left = 667.0
+offset_top = 10.0
+offset_right = 4083.0
+offset_bottom = 2640.0
+scale = Vector2(0.13876, 0.13876)
+theme_override_colors/font_color = Color(0.905882, 1, 0.933333, 1)
+theme_override_colors/font_outline_color = Color(0.152941, 0.160784, 0.27451, 1)
+theme_override_constants/outline_size = 155
+theme_override_fonts/font = ExtResource("5_6e0kg")
+theme_override_font_sizes/font_size = 225
+text = "0 jäljellä"
+horizontal_alignment = 2
+autowrap_mode = 3
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+texture_filter = 1
+position = Vector2(876, 32)
+scale = Vector2(3, 2.30538)
+texture = ExtResource("6_no7wv")
+
 [node name="FadeRect" type="ColorRect" parent="CanvasLayer"]
 self_modulate = Color(1, 1, 1, 0)
 offset_left = -1169.0
@@ -344,6 +367,7 @@ color = Color(0.0588235, 0.0627451, 0.12549, 0.941176)
 
 [node name="Label" type="Label" parent="CanvasLayer/ScoreWindow"]
 texture_filter = 1
+layout_mode = 0
 offset_left = 293.0
 offset_top = 169.0
 offset_right = 4365.0

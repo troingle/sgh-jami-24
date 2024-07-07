@@ -1,9 +1,9 @@
+Sprite2D
 MenuButton
 MenuBar
 Label
 ColorRect
 Control
-Sprite2D
 Node2D
 AnimationPlayer
 CanvasLayer
@@ -12,4 +12,3 @@ CollisionShape2D
 Area2D
 StaticBody2D
 NavigationAgent2D
-NavigationRegion2D
