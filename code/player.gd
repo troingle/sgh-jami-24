@@ -21,12 +21,35 @@ var mark_count = 0 # number of successful markings
 var stick_count = 0 # number of sticks, successful markings or not
 
 var ended = false
+var fight_on = false
+
+var boss_pos = Vector2(9999, 9999)
 
 func _ready():
 	fade_anim.play("fade_in")
 	Global.paused = false
+	
+	if Global.in_english:
+		if $"..".name == "Level1":
+			$"../Labels/Label".text = "use wasd/arrow keys
+to move"
+			$"../Labels/Label2".text = "place sticks on top of these markings with space"
+			$"../Labels/Label3".text = "you lose if your markings are too inaccurate"
+			$"../Labels/Label4".text = "don't get caught!"
+		elif $"..".name == "Level5":
+			$"../Label".text = "watch out for
+security cameras!"
+
+		$CanvasLayer/ScoreWindow/Restart.text = "restart level"
+		$CanvasLayer/ScoreWindow/Next.text = "continue" 
+		
+		$CanvasLayer/Sprite2D.position.x += 100
+
 
 func _physics_process(delta):
+	if $"..".name == "Level8":
+		boss_pos = $"../FatherInLaw".position
+	
 	if not fade_anim.is_playing() and position.y > 750:
 		position = start_pos.position
 		visible = true
@@ -83,13 +106,27 @@ func _physics_process(delta):
 			$CanvasLayer/ScoreWindow.visible = true
 			ended = true
 		if mark_count >= num_of_marks:
-			$CanvasLayer/ScoreWindow/Label.text = "onnittelut,
-pääsit läpi!"
+			if not Global.in_english:
+				$CanvasLayer/ScoreWindow/Label.text = "onnittelut,
+	pääsit läpi!"
+			else:
+				$CanvasLayer/ScoreWindow/Label.text = "congratulations,
+	you passed!"
 		else:
-			$CanvasLayer/ScoreWindow/Label.text = "liian epätarkkoja merkintöjä, et päässyt läpi"
+			if not Global.in_english:
+				$CanvasLayer/ScoreWindow/Label.text = "liian epätarkkoja merkintöjä, et päässyt läpi"
+			else:
+				$CanvasLayer/ScoreWindow/Label.text = "your markings were too inaccurate, you didn't pass"
 			$CanvasLayer/ScoreWindow/Next.modulate = "ffffff5f"
 	
-	$CanvasLayer/LeftLabel.text = str(num_of_marks - stick_count) + " jäljellä"
+	if not Global.in_english:
+		$CanvasLayer/LeftLabel.text = str(num_of_marks - stick_count) + " jäljellä"
+	else:
+		$CanvasLayer/LeftLabel.text = str(num_of_marks - stick_count) + " left"
+	
+	if boss_pos.distance_to(position) < 37 and not Global.paused:
+		death()
+
 
 func _on_place_timer_timeout():
 	sprite.play("idle")
@@ -98,18 +135,8 @@ func _on_place_timer_timeout():
 	stick_count += 1
 
 func _on_detector_body_entered(body):
-	if body.is_in_group("enemies"):
-		Global.paused = true
-		$Caught.play()
-		camera.zoom.x = 1.6
-		camera.zoom.y = 1.6
-		await get_tree().create_timer(0.4).timeout
-		camera.zoom.x = 2
-		camera.zoom.y = 2
-		await get_tree().create_timer(0.4).timeout
-		camera.zoom.x = 3.5
-		camera.zoom.y = 3.5
-		fade_and_change(true, null)
+	if (body.is_in_group("enemies") and not fight_on):
+		death()
 		
 func fade_and_change(resetting, target_scene):
 	await get_tree().create_timer(0.7).timeout
@@ -144,4 +171,17 @@ func _on_next_pressed():
 		elif $"..".name == "Level7":
 			fade_and_change(false, "res://scenes/level_8.tscn")
 		elif $"..".name == "Level8":
-			fade_and_change(false, "res://scenes/level_9.tscn")
+			fade_and_change(false, "res://scenes/end.tscn")
+			
+func death():
+	Global.paused = true
+	$Caught.play()
+	camera.zoom.x = 1.6
+	camera.zoom.y = 1.6
+	await get_tree().create_timer(0.4).timeout
+	camera.zoom.x = 2
+	camera.zoom.y = 2
+	await get_tree().create_timer(0.4).timeout
+	camera.zoom.x = 3.5
+	camera.zoom.y = 3.5
+	fade_and_change(true, null)

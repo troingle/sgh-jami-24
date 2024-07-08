@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2072fbnh628w"]
+
+[ext_resource type="Script" path="res://scenes/end.gd" id="1_3i3cb"]
+[ext_resource type="FontFile" uid="uid://cmh1vaw7rlwmq" path="res://art/Silkscreen-Bold.ttf" id="1_w2s78"]
+
+[node name="End" type="Node2D"]
+script = ExtResource("1_3i3cb")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 1
+offset_left = 152.0
+offset_top = 135.0
+offset_right = 6227.0
+offset_bottom = 2204.0
+scale = Vector2(0.13876, 0.13876)
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.905882, 1, 0.933333, 1)
+theme_override_fonts/font = ExtResource("1_w2s78")
+theme_override_font_sizes/font_size = 200
+text = "onnittelut, voitit pelin!
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Continue" type="MenuButton" parent="."]
+texture_filter = 1
+offset_top = 466.0
+offset_right = 8302.0
+offset_bottom = 942.0
+scale = Vector2(0.13876, 0.13876)
+size_flags_horizontal = 8
+theme_override_colors/font_color = Color(0.905882, 1, 0.933333, 1)
+theme_override_colors/font_hover_color = Color(0.929412, 0.627451, 0.192157, 1)
+theme_override_fonts/font = ExtResource("1_w2s78")
+theme_override_font_sizes/font_size = 200
+text = "alkuun"
+
+[connection signal="pressed" from="Continue" to="." method="_on_continue_pressed"]

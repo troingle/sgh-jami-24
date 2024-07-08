@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://ct2d72mad7157"]
+[gd_scene load_steps=41 format=3 uid="uid://ct2d72mad7157"]
 
 [ext_resource type="Script" path="res://code/player.gd" id="1_0pesl"]
 [ext_resource type="Texture2D" uid="uid://hv7epreq48bo" path="res://art/player.png" id="1_6n0n7"]
@@ -262,8 +262,6 @@ _data = {
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ib2bb"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5i0ly"]
-
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8hrop"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_kn11j"]
@@ -389,11 +387,11 @@ offset_right = 4366.0
 offset_bottom = 475.0
 scale = Vector2(0.13876, 0.13876)
 theme_override_colors/font_color = Color(0.905882, 1, 0.933333, 1)
+theme_override_colors/font_hover_color = Color(0.929412, 0.627451, 0.192157, 1)
 theme_override_fonts/font = ExtResource("5_6e0kg")
 theme_override_font_sizes/font_size = 165
 theme_override_styles/normal = SubResource("StyleBoxEmpty_s5gc0")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_ib2bb")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_5i0ly")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_8hrop")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_kn11j")
 text = "yritä uudelleen"
@@ -407,11 +405,11 @@ offset_right = 4366.0
 offset_bottom = 510.0
 scale = Vector2(0.13876, 0.13876)
 theme_override_colors/font_color = Color(0.905882, 1, 0.933333, 1)
+theme_override_colors/font_hover_color = Color(0.929412, 0.627451, 0.192157, 1)
 theme_override_fonts/font = ExtResource("5_6e0kg")
 theme_override_font_sizes/font_size = 165
 theme_override_styles/normal = SubResource("StyleBoxEmpty_uqtqn")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_ib2bb")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_5i0ly")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_8hrop")
 theme_override_styles/focus = SubResource("StyleBoxFlat_aa5lw")
 text = "seuraava taso"

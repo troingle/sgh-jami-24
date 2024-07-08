@@ -1,0 +1,104 @@
+[gd_scene load_steps=11 format=3 uid="uid://dwcfj1gcw0dfx"]
+
+[ext_resource type="Script" path="res://scenes/father_in_law.gd" id="1_7i0x2"]
+[ext_resource type="Texture2D" uid="uid://df0wldpimgqty" path="res://art/father_in_law.png" id="1_oqc31"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ftesb"]
+atlas = ExtResource("1_oqc31")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n47qc"]
+atlas = ExtResource("1_oqc31")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_okowq"]
+atlas = ExtResource("1_oqc31")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vo1lk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ftesb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n47qc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_okowq")
+}],
+"loop": true,
+"name": &"run",
+"speed": 6.0
+}]
+
+[sub_resource type="Animation" id="Animation_eyn4c"]
+resource_name = "wobble"
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665]
+}
+
+[sub_resource type="Animation" id="Animation_1idgi"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nrbma"]
+_data = {
+"RESET": SubResource("Animation_1idgi"),
+"wobble": SubResource("Animation_eyn4c")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0o6ve"]
+size = Vector2(29.2602, 31.089)
+
+[node name="FatherInLaw" type="CharacterBody2D"]
+scale = Vector2(1.4, 1.4)
+collision_layer = 4
+collision_mask = 4
+script = ExtResource("1_7i0x2")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(1.5, 1.5)
+sprite_frames = SubResource("SpriteFrames_vo1lk")
+animation = &"idle"
+autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nrbma")
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.7093e-08, 14.0909)
+scale = Vector2(0.497107, 0.497107)
+shape = SubResource("RectangleShape2D_0o6ve")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]

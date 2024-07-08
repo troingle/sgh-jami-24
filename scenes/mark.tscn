@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://b3x0pednriaqg"]
 
 [ext_resource type="Texture2D" uid="uid://cj3klei5gvqo2" path="res://art/mark.png" id="1_78u4p"]
-[ext_resource type="Script" path="res://scenes/mark.gd" id="1_wgx6w"]
+[ext_resource type="Script" path="res://code/mark.gd" id="1_ihvr2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xgv34"]
-radius = 71.2531
+radius = 83.0241
 
 [sub_resource type="Animation" id="Animation_kygil"]
 length = 0.001
@@ -47,7 +47,7 @@ _data = {
 [node name="Mark" type="StaticBody2D" groups=["marks"]]
 collision_layer = 2
 collision_mask = 2
-script = ExtResource("1_wgx6w")
+script = ExtResource("1_ihvr2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 1

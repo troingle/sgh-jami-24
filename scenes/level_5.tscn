@@ -158,7 +158,7 @@ texture = ExtResource("4_1qby3")
 [sub_resource type="TileSet" id="TileSet_07jwp"]
 sources/0 = SubResource("TileSetAtlasSource_208m5")
 
-[node name="Level4" type="Node2D"]
+[node name="Level5" type="Node2D"]
 
 [node name="SolidMap" type="TileMap" parent="."]
 texture_filter = 1
@@ -221,13 +221,6 @@ spin_dir = -1
 
 [node name="Enemy4" parent="." instance=ExtResource("8_6k2bc")]
 position = Vector2(-153, -1862)
-vertical = true
-spinner = true
-length = 470
-spin_dir = -1
-
-[node name="Enemy5" parent="." instance=ExtResource("8_6k2bc")]
-position = Vector2(223, -2283)
 vertical = true
 spinner = true
 length = 470

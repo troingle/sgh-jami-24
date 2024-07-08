@@ -60,3 +60,6 @@ func _physics_process(delta):
 	else:
 		sprite.pause()
 		anim.pause()
+		
+	if player.fight_on:
+		$View/Sprite2D.visible = false
