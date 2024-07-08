@@ -1,3 +1,4 @@
+AudioStreamPlayer
 TextureButton
 NavigationRegion2D
 NavigationAgent2D
@@ -12,4 +13,3 @@ MenuBar
 Label
 Control
 Node2D
-CanvasLayer

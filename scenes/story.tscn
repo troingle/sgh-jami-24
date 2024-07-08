@@ -25,9 +25,9 @@ autowrap_mode = 3
 
 [node name="Continue" type="MenuButton" parent="."]
 texture_filter = 1
-offset_top = 466.0
+offset_top = 436.0
 offset_right = 8302.0
-offset_bottom = 942.0
+offset_bottom = 912.0
 scale = Vector2(0.13876, 0.13876)
 size_flags_horizontal = 8
 theme_override_colors/font_color = Color(0.905882, 1, 0.933333, 1)

@@ -199,11 +199,6 @@ width = 3.0
 default_color = Color(0.929412, 0.627451, 0.192157, 1)
 script = ExtResource("8_jgvi3")
 
-[node name="Enemy" parent="." instance=ExtResource("9_a13te")]
-position = Vector2(-137, -1029)
-vertical = true
-length = 470
-
 [node name="Enemy2" parent="." instance=ExtResource("9_a13te")]
 position = Vector2(-354, -660)
 length = 660

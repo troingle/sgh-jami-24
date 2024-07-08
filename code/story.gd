@@ -4,7 +4,7 @@ func _ready():
 	if Global.in_english:
 		$Label.text = "congratulations! you just got a job and now have to mark the way for a new highway.
 
-unfortunately the highway goes directly through multiple summerhouse locations, and the owners won't bew very happy about it..."
+unfortunately the highway goes directly through multiple summerhouse locations, and the owners aren't too happy about it..."
 		
 		$Continue.text = "continue"
 

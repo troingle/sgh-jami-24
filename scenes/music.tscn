@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://cgyb3oh3cgsmk"]
+
+[ext_resource type="AudioStream" uid="uid://ci7do4y1t7273" path="res://audio/motorway-odyssey-theme.wav" id="1_8kuf7"]
+
+[node name="Music" type="AudioStreamPlayer"]
+stream = ExtResource("1_8kuf7")
+autoplay = true

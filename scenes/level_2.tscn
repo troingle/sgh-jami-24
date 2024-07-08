@@ -211,11 +211,6 @@ position = Vector2(-226, -1429)
 length = 610
 speed = 150
 
-[node name="Enemy5" parent="." instance=ExtResource("9_17htk")]
-position = Vector2(-576, -1142)
-length = 390
-speed = 150
-
 [node name="Enemy3" parent="." instance=ExtResource("9_17htk")]
 position = Vector2(-1008, -2642)
 length = 715

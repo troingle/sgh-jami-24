@@ -126,6 +126,11 @@ func _physics_process(delta):
 	
 	if boss_pos.distance_to(position) < 37 and not Global.paused:
 		death()
+		
+	if $Caught.is_playing():
+		Music.stream_paused = true
+	elif !Music.is_playing():
+		Music.stream_paused = false
 
 
 func _on_place_timer_timeout():
